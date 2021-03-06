@@ -22,12 +22,12 @@ class CreateAccountsTable extends Migration
             $table->integer('payment_method_id')->nullable();
             $table->integer('bank_id')->nullable();
 
-            $table->string('account_name',250)->nullable();
-            $table->string('account_no',150)->nullable();
-            $table->decimal('opening_amount',20,2)->nullable();
-            
-            $table->string('contract_person',150)->nullable();
-            $table->string('contract_phone',20)->nullable();
+            $table->string('account_name', 250)->nullable();
+            $table->string('account_no', 150)->nullable();
+            $table->decimal('opening_amount', 20, 2)->nullable();
+
+            $table->string('contract_person', 150)->nullable();
+            $table->string('contract_phone', 20)->nullable();
             $table->text('address')->nullable();
 
             $table->tinyInteger('status')->default(1);
@@ -36,7 +36,7 @@ class CreateAccountsTable extends Migration
             $table->dateTime('deleted_at')->nullable();
             $table->integer('created_by')->nullable();
 
-            
+
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class Account extends Model
         "bank_id",
         "account_name",
         "account_no",
-        "openning_amount",
+        "opening_amount",
         "contract_person",
         "contract_phone",
         "address",
@@ -28,12 +28,12 @@ class Account extends Model
 
     public function isActive()
     {
-        return $this->is_active==1;
+        return $this->is_active == 1;
     }
 
     public function isVerified()
     {
-        return $this->is_Verified==1;
+        return $this->is_Verified == 1;
     }
 
     public function paymentMethod()
@@ -45,5 +45,4 @@ class Account extends Model
     {
         return $this->belongsTo(Bank::class);
     }
-
 }

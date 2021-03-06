@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('public/frontend') }}/img/favicon.png" type="image/x-icon">
 
 
@@ -19,7 +19,9 @@
     <link href="{{ asset('public/frontend') }}/css/weather-icons.min.css" rel="stylesheet" />
 
     <!--Fonts-->
-    <link href="../fonts.googleapis.com/css@family=open+sans_3a300italic,400italic,600italic,700italic,400,600,700,300.css" rel="stylesheet" type="text/css">
+    <link
+        href="../fonts.googleapis.com/css@family=open+sans_3a300italic,400italic,600italic,700italic,400,600,700,300.css"
+        rel="stylesheet" type="text/css">
     <link href='../fonts.googleapis.com/css@family=roboto_3a400,300.css' rel='stylesheet' type='text/css'>
     <!--Beyond styles-->
     <link href="{{ asset('public/frontend') }}/css/beyond.min.css" rel="stylesheet" type="text/css" />
@@ -38,13 +40,14 @@
 
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('public/frontend') }}/table/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{ asset('public/frontend') }}/table/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('public/frontend') }}/table/datatables-responsive/css/responsive.bootstrap4.min.css">
     <!--toastr.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
 
 
     <style>
-        .page-breadcrumbs .breadcrumb{
+        .page-breadcrumbs .breadcrumb {
             line-height: 35px;
         }
     </style>
@@ -65,7 +68,7 @@
             <div class="navbar-container">
                 <!-- Navbar Barnd -->
                 <div class="navbar-header pull-left">
-                    <a href="#" class="navbar-brand">
+                    <a href="#" class="navbar-brand" style="line-height: normal;">
                         Admin Dashboard
                     </a>
                 </div>
@@ -94,7 +97,8 @@
                                     <!--Avatar Area-->
                                     <li>
                                         <div class="avatar-area">
-                                            <img src="{{ asset('public/frontend') }}/img/avatars/adam-jansen.jpg" class="avatar">
+                                            <img src="{{ asset('public/frontend') }}/img/avatars/adam-jansen.jpg"
+                                                class="avatar">
                                             <span class="caption">Change Photo</span>
                                         </div>
                                     </li>
@@ -226,7 +230,7 @@
                     <!--Sale End-->
 
                     <!--Purchase-->
-                     <li>
+                    <li>
                         <a href="{{route('admin.purchase.index')}}">
                             <i class="menu-icon fa fa-bar-chart-o"></i>
                             <span class="menu-text"> Purchase </span>
@@ -234,7 +238,7 @@
                     </li>
                     <!--Purchase End-->
                     <!--Purchase-->
-                     <li>
+                    <li>
                         <a href="{{route('admin.purchase.product.receive.index')}}">
                             <i class="menu-icon fa fa-bar-chart-o"></i>
                             <span class="menu-text"> Receive Purchase Product </span>
@@ -281,7 +285,7 @@
                     <!--Damage End-->
 
                     <!--Expense-->
-                     <li>
+                    <li>
                         <a href="calendar.html">
                             <i class="menu-icon glyphicon glyphicon-usd"></i>
                             <span class="menu-text">
@@ -389,15 +393,15 @@
 
                     </li>
 
-                <li>
-                    <a href="{{route('customer.supplier.index')}}">
-                        <span class="menu-text">Customer/Suppliers(Extra)</span>
-                    </a>
-                </li>
+                    <li>
+                        <a href="{{route('customer.supplier.index')}}">
+                            <span class="menu-text">Customer/Suppliers(Extra)</span>
+                        </a>
+                    </li>
 
 
 
-                {{--
+                    {{--
 
                     <li>
                         <a href="#">
@@ -429,65 +433,65 @@
                             </li>
                             <li>
                                 <a href="{{route('customer.supplier.index')}}">
-                                    <span class="menu-text">Customer & Suppliers</span>
-                                </a>
-                            </li>
-
-
-                        </ul>
+                    <span class="menu-text">Customer & Suppliers</span>
+                    </a>
                     </li>
-                    <!--Tables-->
-                    <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-database"></i>
-                            <span class="menu-text"> Installments </span>
 
-                            <i class="menu-expand"></i>
-                        </a>
 
-                        <ul class="submenu">
-                            <li>
-                                <a href="tables-simple.html">
-                                    <span class="menu-text">Installment Customers</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tables-data.html">
-                                    <span class="menu-text">Installment Sale</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tables-data.html">
-                                    <span class="menu-text">Installment Collection</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!--Forms-->
-                    <li>
-                        <a href="index.html">
-                            <i class="menu-icon glyphicon glyphicon-edit"></i>
-                            <span class="menu-text"> Purchase </span>
-                        </a>
-                    </li>
-                    <!--Charts-->
+                </ul>
+                </li>
+                <!--Tables-->
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa fa-database"></i>
+                        <span class="menu-text"> Installments </span>
 
-                    <!--Profile-->
+                        <i class="menu-expand"></i>
+                    </a>
 
-                    <!--Mail-->
+                    <ul class="submenu">
+                        <li>
+                            <a href="tables-simple.html">
+                                <span class="menu-text">Installment Customers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tables-data.html">
+                                <span class="menu-text">Installment Sale</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tables-data.html">
+                                <span class="menu-text">Installment Collection</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Forms-->
+                <li>
+                    <a href="index.html">
+                        <i class="menu-icon glyphicon glyphicon-edit"></i>
+                        <span class="menu-text"> Purchase </span>
+                    </a>
+                </li>
+                <!--Charts-->
 
-                    <!--Calendar-->
+                <!--Profile-->
 
-                    <!--Pages-->
+                <!--Mail-->
 
-                    <li>
-                        <a href="#">
-                            <i class="menu-icon glyphicon glyphicon-briefcase"></i>
-                            <span class="menu-text"> Diposite Withdraw </span>
-                        </a>
+                <!--Calendar-->
 
-                    </li>
-                   ---}}
+                <!--Pages-->
+
+                <li>
+                    <a href="#">
+                        <i class="menu-icon glyphicon glyphicon-briefcase"></i>
+                        <span class="menu-text"> Diposite Withdraw </span>
+                    </a>
+
+                </li>
+                ---}}
 
 
 

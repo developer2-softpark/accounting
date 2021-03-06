@@ -43,7 +43,48 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $account = new Account();
+        $account->business_location_id = 1;
+        $account->business_type_id = 1;
+        $account->branch_id = 1;
+        $account->payment_method_id = $request->payment_method_id;
+        $account->bank_id = $request->bank_id;
+        $account->account_name = $request->account_name;
+        $account->account_no = $request->account_no;
+        $account->opening_amount = $request->opening_amount;
+        $account->contract_person = $request->contract_person;
+        $account->contract_phone = $request->contract_phone;
+        $account->address = $request->address;
+        $account->card_no = $request->card_no;
+        $account->card_holder = $request->card_holder_name;
+        $account->card_type = $request->card_type;
+        $account->card_expire_date = $request->expire_month . " " . $request->expire_year;
+        $account->security_code = $request->card_security_code;
+        if (!empty($request->cheque_no)) {
+            $account->account_no = $request->cheque_no;
+        }
+
+        $account->transection_no = $request->transaction_no;
+
+        if (!empty($request->card_transaction_no)) {
+            $account->transection_no = $request->card_transaction_no;
+        }
+        $account->is_verified = 1;
+        $account->is_active = 1;
+        $account->status = 1;
+        $account->created_by = auth()->user()->id;
+        if ($account->save()) {
+            $notification = array(
+                'message' => 'Successfully Account added!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Someting Went Wrong!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -54,7 +95,9 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
-        //
+        $account->payment_method = $account->paymentMethod;
+        $account->bank = $account->bank;
+        return $account;
     }
 
     /**
@@ -65,7 +108,11 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-        //
+        return view("backend.account.account.edit", [
+            "paymentMethods" => PaymentMethod::all(),
+            "banks" => Bank::all(),
+            "account" => $account,
+        ]);
     }
 
     /**
@@ -77,7 +124,47 @@ class AccountController extends Controller
      */
     public function update(Request $request, Account $account)
     {
-        //
+        $account->business_location_id = 1;
+        $account->business_type_id = 1;
+        $account->branch_id = 1;
+        $account->payment_method_id = $request->payment_method_id;
+        $account->bank_id = $request->bank_id;
+        $account->account_name = $request->account_name;
+        $account->account_no = $request->account_no;
+        $account->opening_amount = $request->opening_amount;
+        $account->contract_person = $request->contract_person;
+        $account->contract_phone = $request->contract_phone;
+        $account->address = $request->address;
+        $account->card_no = $request->card_no;
+        $account->card_holder = $request->card_holder_name;
+        $account->card_type = $request->card_type;
+        $account->card_expire_date = $request->expire_month . " " . $request->expire_year;
+        $account->security_code = $request->card_security_code;
+        if (!empty($request->cheque_no)) {
+            $account->account_no = $request->cheque_no;
+        }
+
+        $account->transection_no = $request->transaction_no;
+
+        if (!empty($request->card_transaction_no)) {
+            $account->transection_no = $request->card_transaction_no;
+        }
+        $account->is_verified = 1;
+        $account->is_active = 1;
+        $account->status = 1;
+        $account->created_by = auth()->user()->id;
+        if ($account->save()) {
+            $notification = array(
+                'message' => 'Successfully Account updated!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Someting Went Wrong!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -88,6 +175,17 @@ class AccountController extends Controller
      */
     public function destroy(Account $account)
     {
-        //
+        if ($account->delete()) {
+            $notification = array(
+                'message' => 'Successfully Account deleted!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Someting Went Wrong!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->back()->with($notification);
     }
 }
