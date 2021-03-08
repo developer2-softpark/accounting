@@ -348,10 +348,10 @@
                             <span class="menu-text"> Report </span>
                         </a>
                     </li>
-                    <!--Product-->
+                    <!--Account-->
                     <li>
                         <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-database"></i>
+                            <i class="menu-icon fa fa-money"></i>
                             <span class="menu-text"> Accounts </span>
 
                             <i class="menu-expand"></i>
@@ -371,13 +371,35 @@
                             </li>
                         </ul>
                     </li>
-                    <!--Product End-->
+                    <!--Account End-->
+                    <!--Transaction Start-->
                     <li>
-                        <a href="widgets.html">
+                        <a href="#" class="menu-dropdown">
                             <i class="menu-icon fa fa-money"></i>
-                            <span class="menu-text"> Accounts </span>
+                            <span class="menu-text"> Transaction </span>
+
+                            <i class="menu-expand"></i>
                         </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="{{route('admin.transaction-type.index')}}">
+                                    <span class="menu-text">Transaction Type</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.transaction-category.index')}}">
+                                    <span class="menu-text">Transaction Category</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.transaction-detail.index')}}">
+                                    <span class="menu-text">Transaction Detail</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+                    <!--Transaction End-->
                     <li>
                         <a href="databoxes.html">
                             <i class="menu-icon glyphicon glyphicon-cog"></i>
@@ -587,6 +609,28 @@
             }).then((result) => {
                 if (result.value) {
                     window.location.href = link;
+                    Swal.fire(
+                        'Deleted!',
+                        'Data has been deleted.',
+                        'success'
+                    )
+                }
+            })
+        });
+
+        $(document).on('click', '#delete-form', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Delete this data!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                e.target.parentNode.submit();
+                if (result.value) {
                     Swal.fire(
                         'Deleted!',
                         'Data has been deleted.',

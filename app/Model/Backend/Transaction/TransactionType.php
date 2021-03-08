@@ -41,4 +41,8 @@ class TransactionType extends Model
     {
         return $this->is_verified == 1;
     }
+    public function transactionCategories()
+    {
+        return $this->hasMany(TransactionCategory::class);
+    }
 }

@@ -59,4 +59,8 @@ class TransactionFinal extends Model
     {
         return $this->belongsTo(TransactionCategory::class);
     }
+    public function transactionDetails()
+    {
+        return $this->hasMany(TransactionDetail::class);
+    }
 }

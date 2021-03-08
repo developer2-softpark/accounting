@@ -19,7 +19,7 @@ class TransactionDetail extends Model
         "transaction_final_id",
         "reference_no",
         "transaction_title",
-        "discription",
+        "description",
         "sub_total",
         "status",
         "is_active",
