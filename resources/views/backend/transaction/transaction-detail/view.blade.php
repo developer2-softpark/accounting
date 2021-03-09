@@ -83,7 +83,7 @@
                                     <td>{{$transactionFinal->transactionType->name}}</td>
                                     <td>{{$transactionFinal->transactionCategory->name}}</td>
                                     <td>{{$transactionFinal->reference_no}}</td>
-                                    <td>{{$transactionFinal->transaction_date}}</td>
+                                    <td>{{date("F j, Y", strtotime($item->transaction_created_date))}}</td>
                                     <td>{{$transactionFinal->others_cost}}</td>
                                     <td>{{$item->transaction_title}}</td>
                                     <td>{{$item->sub_total}}</td>
@@ -105,7 +105,7 @@
                                 @endforeach
                                 @endforeach
                             </tbody>
-                            <tfooter>
+                            <tfoot>
                                 <tr>
                                     <th>SN</th>
                                     <th>Type</th>
@@ -117,7 +117,7 @@
                                     <th>Sub Total</th>
                                     <th>Action</th>
                                 </tr>
-                            </tfooter>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -128,45 +128,3 @@
 </div>
 <!-- /Page Content -->
 @endsection
-
-@push('js')
-<script>
-    function addRow(){
-        $("#tbody-transaction").append(`
-            <tr>
-                <td>
-                    <div class="form-group">
-                        <input name="reference_no[]" type="text" placeholder="" class="form-control">
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input name="transaction_title[]" type="text" placeholder="" class="form-control">
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input name="description[]" type="text" placeholder="" class="form-control">
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input name="sub_total[]" type="text"  placeholder="" class="form-control">
-                    </div>
-                </td>
-                <td>
-                    <button class="btn btn-success add-row" type="button" onclick="addRow()">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                    </button>
-                    <button class="btn btn-danger delete-row" type="button" onclick="deleteRow(this)">
-                        <i class="fa fa-minus" aria-hidden="true"></i>
-                    </button>
-                </td>
-            </tr>
-        `);
-    }
-    function deleteRow(e){
-        e.parentNode.parentNode.remove();
-    }
-</script>
-@endpush

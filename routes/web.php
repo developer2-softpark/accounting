@@ -313,6 +313,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::resource('transaction-type', 'TransactionTypeController');
         Route::resource('transaction-category', 'TransactionCategoryController');
         Route::resource('transaction-detail', 'TransactionDetailController');
+        Route::get("transaction-detail/transaction-categories/{transactionType}", "TransactionDetailController@getTransactionCategory")->name("transaction-categories");
     });
 
 

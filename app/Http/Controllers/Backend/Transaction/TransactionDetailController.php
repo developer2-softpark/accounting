@@ -53,23 +53,24 @@ class TransactionDetailController extends Controller
         $transaction_final->reference_no = $request->transaction_final_reference;
         $transaction_final->transaction_date = $request->transaction_date;
         $transaction_final->others_cost = 0;
-        $transaction_final->discount_type = $request->discount_type;
-        $transaction_final->discount_value = $request->discount_value;
-        $transaction_final->discount_amount = $request->discount_amount;
+        $transaction_final->discount_type = 0;
+        $transaction_final->discount_value = 0;
+        $transaction_final->discount_amount = 0;
         $transaction_final->transaction_note = $request->transaction_note;
         $transaction_final->status = 1;
         $transaction_final->is_active = 1;
         $transaction_final->is_verified = 1;
         $transaction_final->created_by = auth()->user()->id;
         if ($transaction_final->save()) {
-            foreach ($request->reference_no as $key => $item) {
+            foreach ($request->transaction_created_date as $key => $item) {
                 $transaction_detail = new TransactionDetail();
                 $transaction_detail->business_location_id = 1;
                 $transaction_detail->business_type_id = 1;
                 $transaction_detail->transaction_type_id = $request->transaction_type_id;
                 $transaction_detail->transaction_category_id = $request->transaction_category_id;
                 $transaction_detail->transaction_final_id = $transaction_final->id;
-                $transaction_detail->reference_no = $request->reference_no[$key];
+                $transaction_detail->transaction_created_date = $request->transaction_created_date[$key];
+                $transaction_detail->reference_no = $request->transaction_final_reference;
                 $transaction_detail->transaction_title = $request->transaction_title[$key];
                 $transaction_detail->description = $request->description[$key];
                 $transaction_detail->sub_total = $request->sub_total[$key];
@@ -143,9 +144,9 @@ class TransactionDetailController extends Controller
         $transaction_final->reference_no = $request->transaction_final_reference;
         $transaction_final->transaction_date = $request->transaction_date;
         $transaction_final->others_cost = 0;
-        $transaction_final->discount_type = $request->discount_type;
-        $transaction_final->discount_value = $request->discount_value;
-        $transaction_final->discount_amount = $request->discount_amount;
+        $transaction_final->discount_type = 0;
+        $transaction_final->discount_value = 0;
+        $transaction_final->discount_amount = 0;
         $transaction_final->transaction_note = $request->transaction_note;
         $transaction_final->status = 1;
         $transaction_final->is_active = 1;
@@ -153,14 +154,15 @@ class TransactionDetailController extends Controller
         $transaction_final->created_by = auth()->user()->id;
         if ($transaction_final->save()) {
             $transaction_detail->transactionDetails()->delete();
-            foreach ($request->reference_no as $key => $item) {
+            foreach ($request->transaction_created_date as $key => $item) {
                 $transaction_detail = new TransactionDetail();
                 $transaction_detail->business_location_id = 1;
                 $transaction_detail->business_type_id = 1;
                 $transaction_detail->transaction_type_id = $request->transaction_type_id;
                 $transaction_detail->transaction_category_id = $request->transaction_category_id;
                 $transaction_detail->transaction_final_id = $transaction_final->id;
-                $transaction_detail->reference_no = $request->reference_no[$key];
+                $transaction_detail->transaction_created_date = $request->transaction_created_date[$key];
+                $transaction_detail->reference_no = $request->transaction_final_reference;
                 $transaction_detail->transaction_title = $request->transaction_title[$key];
                 $transaction_detail->description = $request->description[$key];
                 $transaction_detail->sub_total = $request->sub_total[$key];
@@ -210,5 +212,10 @@ class TransactionDetailController extends Controller
             );
         }
         return redirect()->back()->with($notification);
+    }
+
+    public function getTransactionCategory(TransactionType $transactionType)
+    {
+        return $transactionType->transactionCategories;
     }
 }

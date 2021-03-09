@@ -22,7 +22,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->integer('transaction_category_id')->nullable();
             $table->integer('transaction_final_id')->nullable();
             $table->string('reference_no', 100)->nullable();
-            // $table->dateTime('transaction_created_date')->nullable();
+            $table->dateTime('transaction_created_date')->nullable();
 
             $table->text('transaction_title')->nullable();
             $table->text('description')->nullable();

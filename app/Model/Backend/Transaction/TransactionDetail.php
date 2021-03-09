@@ -18,6 +18,7 @@ class TransactionDetail extends Model
         "transaction_category_id",
         "transaction_final_id",
         "reference_no",
+        "transaction_created_date",
         "transaction_title",
         "description",
         "sub_total",
