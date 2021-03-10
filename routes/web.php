@@ -270,7 +270,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     /* Payment Method */
     Route::group(['as' => 'admin.', 'prefix' => 'admin/payment', 'namespace' => 'Backend\Payment'], function () {
-        Route::resource('method', 'PaymentMethodController');
+        Route::resource('paymentMethod', 'PaymentMethodController');
     });
     /* Account */
     Route::group(['as' => 'admin.', 'prefix' => 'admin/payment', 'namespace' => 'Backend\Payment'], function () {

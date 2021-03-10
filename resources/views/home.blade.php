@@ -359,14 +359,18 @@
 
                         <ul class="submenu">
                             <li>
-                                <a href="{{route('admin.account.index')}}">
-                                    <span class="menu-text">Accounts</span>
+                                <a href="{{route('admin.paymentMethod.index')}}">
+                                    <span class="menu-text">Payment Method</span>
                                 </a>
                             </li>
-
                             <li>
                                 <a href="{{route('admin.bank.index')}}">
                                     <span class="menu-text">Banks</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.account.index')}}">
+                                    <span class="menu-text">Accounts</span>
                                 </a>
                             </li>
                         </ul>
@@ -565,6 +569,7 @@
                     themethirdcolor = getThemeColorFromCss('themethirdcolor');
                     themefourthcolor = getThemeColorFromCss('themefourthcolor');
                     themefifthcolor = getThemeColorFromCss('themefifthcolor');
+        });
 
     </script>
 

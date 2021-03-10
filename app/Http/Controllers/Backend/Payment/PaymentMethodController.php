@@ -15,7 +15,9 @@ class PaymentMethodController extends Controller
      */
     public function index()
     {
-        //
+        return view("backend.account.payment-method.view", [
+            "paymentMethods" => PaymentMethod::all(),
+        ]);
     }
 
     /**
@@ -25,7 +27,7 @@ class PaymentMethodController extends Controller
      */
     public function create()
     {
-        //
+        return redirect()->route("admin.paymentMethod.index");
     }
 
     /**
@@ -36,7 +38,32 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            "method" => "required|string|max:100|unique:payment_methods,method"
+        ]);
+
+        $paymentMethod = new PaymentMethod();
+
+        $paymentMethod->business_location_id = 1;
+        $paymentMethod->business_type_id = 1;
+        $paymentMethod->method = $request->method;
+        $paymentMethod->status = 1;
+        $paymentMethod->is_active = 1;
+        $paymentMethod->is_verified = 1;
+        $paymentMethod->created_by = auth()->user()->id;
+
+        if ($paymentMethod->save()) {
+            $notification = array(
+                'message' => 'Successfully Payment Method added!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Someting Went Wrong!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -47,7 +74,7 @@ class PaymentMethodController extends Controller
      */
     public function show(PaymentMethod $paymentMethod)
     {
-        //
+        return redirect()->route("admin.paymentMethod.index");
     }
 
     /**
@@ -58,7 +85,9 @@ class PaymentMethodController extends Controller
      */
     public function edit(PaymentMethod $paymentMethod)
     {
-        //
+        return view("backend.account.payment-method.edit", [
+            "paymentMethod" => $paymentMethod,
+        ]);
     }
 
     /**
@@ -70,7 +99,24 @@ class PaymentMethodController extends Controller
      */
     public function update(Request $request, PaymentMethod $paymentMethod)
     {
-        //
+        $this->validate($request, [
+            "method" => "required|string|max:100|unique:payment_methods,method," . $paymentMethod->id
+        ]);
+
+        $paymentMethod->method = $request->method;
+
+        if ($paymentMethod->save()) {
+            $notification = array(
+                'message' => 'Successfully Payment Method Updated!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Someting Went Wrong!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -81,6 +127,17 @@ class PaymentMethodController extends Controller
      */
     public function destroy(PaymentMethod $paymentMethod)
     {
-        //
+        if ($paymentMethod->delete()) {
+            $notification = array(
+                'message' => 'Successfully Payment Method Deleted!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Someting Went Wrong!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->back()->with($notification);
     }
 }
