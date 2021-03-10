@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Backend\Stock\PrimaryStock;
 use App\Model\Backend\Stock\Stock;
+
 class PrimaryStockController extends Controller
 {
     /**
@@ -15,23 +16,22 @@ class PrimaryStockController extends Controller
      */
     public function index(Request $request)
     {
-        $data['stockTypies'] = Stock::whereNull('deleted_at')->where('stock_type_id',2)->get();
-        if($request->stock_id)
-        {
-            $stock_id = $request->stock_id;
-        }else{
-            $stock_id = 2;
+        $data['stockTypies'] = Stock::whereNull('deleted_at')->where('stock_type_id', 2)->get();
+        if ($request->stock_id) {
+            $stock_id[] = $request->stock_id;
+        } else {
+            $stock_id = Stock::whereNull('deleted_at')->where('stock_type_id', 2)->get()->pluck("id")->all();
         }
-        $data['stock_id'] = $stock_id;
+        $data['stock_id'] = $stock_id[0];
         $data['stocks'] =  PrimaryStock::whereNull('deleted_at')
-                        ->where('stock_id',$stock_id)
-                        ->where('stock_type_id',2)
-                        ->latest()
-                        ->get();
-                    //->where('company_id',1)
-                    //->where('stock_type_id',1)
-                    //->where('stock_type_id',1)
-        return view('backend.stock.primary_stock.index',$data);
+            ->whereIn('stock_id', $stock_id)
+            ->where('stock_type_id', 2)
+            ->latest()
+            ->get();
+        //->where('company_id',1)
+        //->where('stock_type_id',1)
+        //->where('stock_type_id',1)
+        return view('backend.stock.primary_stock.index', $data);
     }
 
     /**

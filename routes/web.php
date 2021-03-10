@@ -316,6 +316,14 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get("transaction-detail/transaction-categories/{transactionType}", "TransactionDetailController@getTransactionCategory")->name("transaction-categories");
     });
 
+    Route::group(['as' => "admin.", "prefix" => "admin", "namespace" => "Backend\Stock"], function () {
+        Route::get("transfer-stock/{primaryStock}", "StockTransferController@getStock")->name('transfer-stock');
+        Route::get("transfer-stock-secondary/{secondaryStock}", "StockTransferController@getStockSecondary")->name('transfer-stock-secondary');
+        Route::post("transfer-stock", "StockTransferController@transfer")->name('transfer-stock');
+        Route::get("transfer-stock/stocks/{stock_type}", "StockTransferController@getStocks")->name('stocks');
+        // admin/transfer-stock/stock_type
+    });
+
 
     /**
      * Developer: Bappi Saha

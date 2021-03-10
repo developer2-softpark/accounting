@@ -35,7 +35,6 @@
             url: 'account/' + id,
             type: 'GET',
             success: function(response){
-                console.log(response);
                 if(response.payment_method.method && response.payment_method.method != ""){
                     $("#show-modal-body").append(`
                         <div class="col-sm-6">

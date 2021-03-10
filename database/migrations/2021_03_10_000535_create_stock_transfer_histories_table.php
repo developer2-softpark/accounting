@@ -26,8 +26,8 @@ class CreateStockTransferHistoriesTable extends Migration
             $table->integer('from_product_id')->nullable();
             $table->integer('to_product_variation_id')->nullable();
             $table->integer('to_product_id')->nullable();
-            $table->integer('transfer_quantity')->nullable();
-            $table->integer('receive_quantity')->nullable();
+            $table->integer('transfer_quantity')->default(0);
+            $table->integer('receive_quantity')->default(0);
             $table->integer('transfer_by')->nullable();
             $table->integer('receive_by')->nullable();
             $table->dateTime('receive_at')->nullable();
