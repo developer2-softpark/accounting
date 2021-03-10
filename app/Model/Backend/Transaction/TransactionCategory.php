@@ -46,6 +46,6 @@ class TransactionCategory extends Model
 
     public function transactionType()
     {
-        return $this->belongsTo(TransactionType::class);
+        return $this->belongsTo(User::class, "created_by");
     }
 }
